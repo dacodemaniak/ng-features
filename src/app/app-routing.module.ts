@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { UserGuard } from './authentication/user.guard';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ export class AppRoutingModule {
     {
       path: 'home',
       loadChildren: () => import('./home/home.module')
-        .then((m) => m.HomeModule)
+        .then((m) => m.HomeModule),
+      canActivate: [UserGuard]
     },
     {
       path: 'authentication',
